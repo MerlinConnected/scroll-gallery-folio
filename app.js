@@ -26,13 +26,13 @@ const appHeight = () => {
 window.addEventListener('resize', appHeight);
 appHeight();
 
-// mainEl.addEventListener('touchstart', startTouch);
-// mainEl.addEventListener('touchend', endTouch);
-// mainEl.addEventListener('touchmove', moveTouch);
+mainEl.addEventListener('touchstart', startTouch, { passive: false });
+mainEl.addEventListener('touchend', endTouch, { passive: false });
+mainEl.addEventListener('touchmove', moveTouch, { passive: false });
 
-// mainEl.addEventListener('mousedown', startMouseDown);
-// mainEl.addEventListener('mouseup', startMouseUp);
-mainEl.addEventListener('mousewheel', wheelFunc);
+mainEl.addEventListener('mousedown', startMouseDown);
+mainEl.addEventListener('mouseup', startMouseUp);
+mainEl.addEventListener('mousewheel', wheelFunc, { passive: false });
 
 //desktop
 
@@ -48,7 +48,7 @@ function wheelFunc(e) {
       content.style.transform = `translateY(${current}px)`;
       setTimeout(() => {
         canSwipe = true;
-      }, 500);
+      }, 250);
     }
 
     //scroll / swipe down
@@ -59,7 +59,62 @@ function wheelFunc(e) {
       content.style.transform = `translateY(${current}px)`;
       setTimeout(() => {
         canSwipe = true;
-      }, 500);
+      }, 250);
     }
   }
+}
+
+let initialStart = 0;
+let initialEnd = 0;
+
+let initialY = 0;
+let endY = 0;
+
+function startMouseDown(e) {
+  initialStart = Date.now();
+  initialY = e.clientY;
+}
+
+function startMouseUp(e) {
+  initialEnd = Date.now();
+  endY = e.clientY;
+  console.log(initialEnd - initialStart);
+  if (initialEnd - initialStart < 800) {
+    swipe();
+  }
+}
+
+//touch screens
+function startTouch(e) {
+  initialStart = Date.now();
+  initialY = e.touches[0].clientY;
+}
+
+function endTouch(e) {
+  initialEnd = Date.now();
+  endY = e.changedTouches[0].clientY;
+  if (initialEnd - initialStart < 800) {
+    swipe();
+  }
+}
+
+function swipe() {
+  //swipe / drag up
+  if (endY - initialY < -50) {
+    if (current !== -(window.innerHeight * 5)) {
+      current -= window.innerHeight;
+      slide++;
+      content.style.transform = `translateY(${current}px)`;
+    }
+  } else if (endY - initialY > 50) {
+    if (current !== 0) {
+      current += window.innerHeight;
+      slide--;
+    }
+  }
+  content.style.transform = `translateY(${current}px)`;
+}
+
+function moveTouch(e) {
+  e.preventDefault();
 }
