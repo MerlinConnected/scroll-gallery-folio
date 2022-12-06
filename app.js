@@ -5,6 +5,7 @@ images.forEach((image, idx) => {
   image.style.backgroundImage = `url(./img/${idx + 1}.jpg)`;
   image.addEventListener('click', () => {
     image.classList.toggle('active');
+    console.log(image.classList.contains('active'));
   });
 });
 
@@ -38,7 +39,7 @@ mainEl.addEventListener('mousewheel', wheelFunc, { passive: false });
 
 let canSwipe = true;
 function wheelFunc(e) {
-  console.log(e.deltaY);
+  //console.log(e.deltaY);
   if (canSwipe) {
     //scroll / swipe up
     if (e.deltaY > 50 && current !== -(window.innerHeight * 5)) {
@@ -78,7 +79,7 @@ function startMouseDown(e) {
 function startMouseUp(e) {
   initialEnd = Date.now();
   endY = e.clientY;
-  console.log(initialEnd - initialStart);
+  //console.log(initialEnd - initialStart);
   if (initialEnd - initialStart < 800) {
     swipe();
   }

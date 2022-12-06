@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: #e3e3e3;
+  color: #ffffff;
   font-family: 'Inter', sans-serif;
 }
 
@@ -77,10 +77,34 @@ section {
   background-position: center;
   transform: scale(1);
   transition: 0.5s;
+  transition-timing-function: ease-in-out;
   filter: grayscale(50%);
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .img.active {
   transform: scale(1.7);
+}
+
+p {
+  display: block;
+  color: #ffffff;
+  font-weight: 100;
+  font-size: 3rem;
+  transform: translateY(100%);
+  mix-blend-mode: difference;
+  transition: 1s;
+  transition-timing-function: ease-in-out;
+}
+
+.img.active p {
+  transform: translateY(0);
+}
+
+.text-container {
+  overflow: hidden;
 }
