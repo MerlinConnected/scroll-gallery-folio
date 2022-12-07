@@ -92,16 +92,18 @@ section {
 
 p {
   display: block;
-  color: #ffffff;
+  color: #131313;
   font-weight: 100;
   font-size: 3rem;
   transform: translateY(100%);
-  mix-blend-mode: difference;
   transition: 1s;
   transition-timing-function: ease-in-out;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 7rem;
 }
 
-.img.active p {
+.text-container.active p {
   transform: translateY(0);
 }
 

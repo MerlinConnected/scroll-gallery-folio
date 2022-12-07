@@ -1,19 +1,13 @@
 const mainEl = document.querySelector('main');
 const content = document.querySelector('.content');
-const images = [...document.querySelectorAll('.img')];
-images.forEach((image, idx) => {
-  image.style.backgroundImage = `url(./img/${idx + 1}.jpg)`;
-  image.addEventListener('click', () => {
-    image.classList.toggle('active');
-    console.log(image.classList.contains('active'));
-  });
-});
+const containers = [...document.querySelectorAll('.text-container')];
 
 //measure content translate
 let current = 0;
 
 //store current slide number
 let slide = 0;
+containers[slide].classList.add('active');
 
 //set app height to the window.innerHeight because vh doesn't work the same way on mobile
 //https://dev.to/maciejtrzcinski/100vh-problem-with-ios-safari-3ge9
@@ -41,26 +35,32 @@ let canSwipe = true;
 function wheelFunc(e) {
   //console.log(e.deltaY);
   if (canSwipe) {
-    //scroll / swipe up
+    //scroll / swipe down
     if (e.deltaY > 50 && current !== -(window.innerHeight * 5)) {
       canSwipe = false;
       current -= window.innerHeight;
       slide++;
+      previousSlide = slide - 1;
+      containers[slide].classList.add('active');
+      containers[previousSlide].classList.remove('active');
       content.style.transform = `translateY(${current}px)`;
       setTimeout(() => {
         canSwipe = true;
-      }, 250);
+      }, 500);
     }
 
-    //scroll / swipe down
+    //scroll / swipe up
     if (e.deltaY < 50 && current !== -0) {
       canSwipe = false;
       current += window.innerHeight;
       slide--;
       content.style.transform = `translateY(${current}px)`;
+      const nextSlide = slide + 1;
+      containers[nextSlide].classList.remove('active');
+      containers[slide].classList.add('active');
       setTimeout(() => {
         canSwipe = true;
-      }, 250);
+      }, 500);
     }
   }
 }
