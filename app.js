@@ -45,7 +45,7 @@ function wheelFunc(e) {
   //console.log(e.deltaY);
   if (canSwipe) {
     //scroll / swipe down
-    if (e.deltaY > 50 && current !== -(window.innerHeight * 5)) {
+    if (e.deltaY > 50 && current !== -(window.innerHeight * 4)) {
       canSwipe = false;
       current -= window.innerHeight;
       slide++;
@@ -111,7 +111,7 @@ function endTouch(e) {
 function swipe() {
   //swipe / drag up
   if (endY - initialY < -50) {
-    if (current !== -(window.innerHeight * 5)) {
+    if (current !== -(window.innerHeight * 4)) {
       current -= window.innerHeight;
       slide++;
       previousSlide = slide - 1;
