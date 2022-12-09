@@ -1,6 +1,15 @@
 const mainEl = document.querySelector('main');
 const content = document.querySelector('.content');
 const containers = [...document.querySelectorAll('.text-container')];
+const images = [...document.querySelectorAll('.img')];
+
+function imageActive() {
+  images.forEach((image, idx) => {
+    image.style.backgroundImage = `url(./img/${idx + 1}.jpg)`;
+  });
+}
+
+imageActive();
 
 //measure content translate
 let current = 0;
@@ -105,12 +114,18 @@ function swipe() {
     if (current !== -(window.innerHeight * 5)) {
       current -= window.innerHeight;
       slide++;
+      previousSlide = slide - 1;
+      containers[slide].classList.add('active');
+      containers[previousSlide].classList.remove('active');
       content.style.transform = `translateY(${current}px)`;
     }
   } else if (endY - initialY > 50) {
     if (current !== 0) {
       current += window.innerHeight;
       slide--;
+      const nextSlide = slide + 1;
+      containers[nextSlide].classList.remove('active');
+      containers[slide].classList.add('active');
     }
   }
   content.style.transform = `translateY(${current}px)`;
