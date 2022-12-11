@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300&family=Playfair+Display:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap');
 
 @font-face {
   font-family: 'wierd-serif';
@@ -31,19 +31,37 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 50px;
+  height: 100px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   z-index: 2;
   pointer-events: none;
-  padding-left: 2%;
+  padding-left: 5%;
+  padding-right: 5%;
   mix-blend-mode: difference;
 }
 
 h1 {
-  font-size: 2rem;
-  font-weight: 100;
-  color: #ebebeb;
+  font-size: 1rem;
+  color: #f1f1f1;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: #f1f1f1;
+  font-size: 1rem;
+  margin-left: 150px;
+}
+
+svg {
+  position: absolute;
+  left: 50%;
+}
+
+nav {
+  pointer-events: all;
 }
 
 main {
@@ -62,8 +80,8 @@ main {
   left: 0;
   width: 100%;
   transition: 0.5s;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 section {
@@ -84,8 +102,8 @@ section {
   background-position: center;
   transform: scale(1);
   transition: 0.5s;
-  filter: grayscale(50%);
-  cursor: pointer;
+  /* filter: grayscale(50%); */
+  /* cursor: pointer; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -98,10 +116,8 @@ section {
 
 p {
   display: block;
-  font-weight: 100;
-  font-size: 3rem;
+  font-weight: 300;
   font-family: 'Inter', sans-serif;
-  font-weight: 400;
   font-size: 7rem;
   overflow: hidden;
   user-select: none;
@@ -118,12 +134,12 @@ p {
 
 span {
   display: block;
-  color: #ffffff;
+  color: #121212;
   transform: translateY(100%);
   transition: 1.5s;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
-  mix-blend-mode: difference;
+  /* mix-blend-mode: difference; */
 }
 
 em {
@@ -138,6 +154,28 @@ em {
 }
 .right-text {
   text-align: end;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  pointer-events: none;
+  padding-left: 5%;
+  padding-right: 5%;
+  mix-blend-mode: difference;
+}
+
+.footer-text {
+  font-size: 1rem;
+  color: #f1f1f1;
+  font-weight: 400;
 }
 
 @media screen and (max-width: 1200px) {

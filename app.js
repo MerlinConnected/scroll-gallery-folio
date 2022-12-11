@@ -1,5 +1,7 @@
 const mainEl = document.querySelector('main');
 const content = document.querySelector('.content');
+const up = document.querySelector('.up');
+const down = document.querySelector('.down');
 const containers = [...document.querySelectorAll('.text-container')];
 const images = [...document.querySelectorAll('.img')];
 
@@ -130,6 +132,40 @@ function swipe() {
   }
   content.style.transform = `translateY(${current}px)`;
 }
+
+function buttons() {
+  down.addEventListener('click', () => {
+    if (current !== -(window.innerHeight * 4)) {
+      canSwipe = false;
+      current -= window.innerHeight;
+      slide++;
+      previousSlide = slide - 1;
+      containers[slide].classList.add('active');
+      containers[previousSlide].classList.remove('active');
+      content.style.transform = `translateY(${current}px)`;
+      setTimeout(() => {
+        canSwipe = true;
+      }, 500);
+    }
+  });
+
+  up.addEventListener('click', () => {
+    if (50 && current !== -0) {
+      canSwipe = false;
+      current += window.innerHeight;
+      slide--;
+      content.style.transform = `translateY(${current}px)`;
+      const nextSlide = slide + 1;
+      containers[nextSlide].classList.remove('active');
+      containers[slide].classList.add('active');
+      setTimeout(() => {
+        canSwipe = true;
+      }, 500);
+    }
+  });
+}
+
+buttons();
 
 function moveTouch(e) {
   e.preventDefault();
