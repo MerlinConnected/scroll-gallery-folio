@@ -146,6 +146,9 @@ em {
   display: inline-block;
   font-family: 'wierd-serif', serif;
   font-style: italic;
+}
+
+.right-border {
   margin-right: 1rem;
 }
 
@@ -182,6 +185,9 @@ footer {
   p {
     font-size: 5rem;
   }
+  a {
+    margin-left: 100px;
+  }
 }
 
 @media screen and (max-width: 740px) {
@@ -189,11 +195,17 @@ footer {
     font-size: 4rem;
     line-height: 4rem;
   }
+  a {
+    margin-left: 50px;
+  }
 }
 
 @media screen and (max-width: 500px) {
   p {
     font-size: 3.5rem;
     line-height: 3.5rem;
+  }
+  a {
+    margin-left: 30px;
   }
 }
